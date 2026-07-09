@@ -32,7 +32,7 @@
 - Tradeoffs: preserve a real app surface while adding enough case-study framing for portfolio review.
 
 ## Visual language
-- Color: dark operational base with cyan/green success accents, amber for warnings, red for risk.
+- Color: light case-study workspace with paper, ivory, and muted grid surfaces; teal/green for automation success, amber for review warnings, red for risk.
 - Typography: system sans, compact dashboard scale, strong numeric hierarchy.
 - Spacing/layout rhythm: dense but breathable 8px radius operational panels.
 - Shape/radius/elevation: restrained panels, no nested decorative cards beyond repeated data items.
