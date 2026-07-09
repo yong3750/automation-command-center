@@ -139,6 +139,8 @@ const queueFilter = document.querySelector("#queueFilter");
 const globalSearch = document.querySelector("#globalSearch");
 const simulateWebhook = document.querySelector("#simulateWebhook");
 const exportRunbook = document.querySelector("#exportRunbook");
+const flowCanvas = document.querySelector("#flowCanvas");
+const flowLines = document.querySelector(".flow-lines");
 
 let activeNode = "capture";
 let runCount = events.length;
@@ -170,6 +172,50 @@ function setNode(nodeKey) {
   flowNodes.forEach((button) => {
     button.classList.toggle("active", button.dataset.node === activeNode);
   });
+  renderFlowLines();
+}
+
+function nodeButton(nodeKey) {
+  return document.querySelector(`[data-node="${nodeKey}"]`);
+}
+
+function anchor(nodeKey, side) {
+  const node = nodeButton(nodeKey).getBoundingClientRect();
+  const canvas = flowCanvas.getBoundingClientRect();
+  const x = side === "right" ? node.right - canvas.left : node.left - canvas.left;
+  return {
+    x,
+    y: node.top - canvas.top + node.height / 2,
+  };
+}
+
+function connectorPath(from, to) {
+  const distance = Math.max(72, Math.abs(to.x - from.x) * 0.48);
+  return `M ${from.x.toFixed(1)} ${from.y.toFixed(1)} C ${(from.x + distance).toFixed(1)} ${from.y.toFixed(1)}, ${(to.x - distance).toFixed(1)} ${to.y.toFixed(1)}, ${to.x.toFixed(1)} ${to.y.toFixed(1)}`;
+}
+
+function renderFlowLines() {
+  if (!flowCanvas || !flowLines || window.matchMedia("(max-width: 1120px)").matches) return;
+
+  const canvas = flowCanvas.getBoundingClientRect();
+  flowLines.setAttribute("viewBox", `0 0 ${canvas.width.toFixed(1)} ${canvas.height.toFixed(1)}`);
+
+  const pairs = [
+    ["capture", "classify"],
+    ["classify", "route"],
+    ["classify", "draft"],
+    ["route", "crm"],
+    ["draft", "crm"],
+    ["crm", "monitor"],
+  ];
+
+  flowLines.innerHTML = pairs
+    .map(([from, to]) => {
+      const start = anchor(from, "right");
+      const end = anchor(to, "left");
+      return `<path d="${connectorPath(start, end)}"></path>`;
+    })
+    .join("");
 }
 
 function renderLeads() {
@@ -281,3 +327,8 @@ exportRunbook.addEventListener("click", downloadRunbook);
 setNode("capture");
 renderLeads();
 renderEvents();
+window.addEventListener("resize", renderFlowLines);
+if ("ResizeObserver" in window) {
+  new ResizeObserver(renderFlowLines).observe(flowCanvas);
+}
+requestAnimationFrame(renderFlowLines);

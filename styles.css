@@ -294,6 +294,7 @@ h2 {
   inset: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .flow-lines path {
@@ -301,6 +302,7 @@ h2 {
   stroke: rgba(93, 216, 255, 0.36);
   stroke-linecap: round;
   stroke-width: 3;
+  vector-effect: non-scaling-stroke;
 }
 
 .flow-node {
@@ -340,33 +342,33 @@ h2 {
 }
 
 .source {
-  left: 50px;
-  top: 54px;
+  left: 5%;
+  top: 164px;
 }
 
 .classify {
-  left: 312px;
-  top: 122px;
+  left: 24%;
+  top: 164px;
 }
 
 .route {
-  right: 170px;
-  top: 54px;
+  left: 46%;
+  top: 62px;
 }
 
 .draft {
-  right: 170px;
-  top: 190px;
+  left: 46%;
+  top: 266px;
 }
 
 .crm {
-  right: 28px;
-  top: 122px;
+  left: 68%;
+  top: 164px;
 }
 
 .monitor {
-  right: 28px;
-  bottom: 46px;
+  left: calc(100% - 184px);
+  top: 164px;
 }
 
 .inspector-surface {
@@ -549,7 +551,10 @@ select {
   }
 
   .flow-canvas {
-    min-height: 620px;
+    display: grid;
+    gap: 12px;
+    min-height: auto;
+    padding: 16px;
   }
 
   .flow-lines {
@@ -558,8 +563,9 @@ select {
 
   .flow-node {
     position: static;
-    width: auto;
-    margin: 12px 16px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0;
   }
 }
 
