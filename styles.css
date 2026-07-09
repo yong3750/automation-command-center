@@ -333,10 +333,7 @@ h2 {
 .flow-canvas {
   position: relative;
   min-height: 420px;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 34px 34px;
+  background: linear-gradient(180deg, rgba(16, 24, 38, 0.74), rgba(10, 15, 24, 0.9));
 }
 
 .flow-lines {
