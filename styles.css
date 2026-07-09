@@ -65,23 +65,73 @@ button {
 }
 
 .brand-sigil {
-  display: grid;
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
   width: 42px;
   height: 42px;
-  place-items: center;
+  overflow: hidden;
   border: 1px solid rgba(93, 216, 255, 0.5);
   border-radius: 10px;
-  color: #071018;
   background: linear-gradient(135deg, var(--cyan), var(--green));
-  font-weight: 900;
 }
 
-.brand-lockup strong,
-.brand-lockup span {
+.brand-sigil::before,
+.brand-sigil::after {
+  position: absolute;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(7, 16, 24, 0.74);
+  content: "";
+  transform-origin: left center;
+}
+
+.brand-sigil::before {
+  left: 15px;
+  top: 14px;
+  width: 15px;
+  transform: rotate(18deg);
+}
+
+.brand-sigil::after {
+  left: 18px;
+  top: 27px;
+  width: 15px;
+  transform: rotate(-34deg);
+}
+
+.sigil-node {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border: 2px solid rgba(7, 16, 24, 0.22);
+  border-radius: 999px;
+  background: #071018;
+}
+
+.sigil-node-one {
+  left: 9px;
+  top: 10px;
+}
+
+.sigil-node-two {
+  right: 9px;
+  top: 15px;
+}
+
+.sigil-node-three {
+  left: 15px;
+  bottom: 9px;
+}
+
+.brand-lockup > div > strong,
+.brand-lockup > div > span {
   display: block;
 }
 
-.brand-lockup span {
+.brand-lockup > div > span {
   color: var(--muted);
   font-size: 13px;
 }
