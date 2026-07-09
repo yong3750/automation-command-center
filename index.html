@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automation Command Center for Lead Operations</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="console-shell">
+      <header class="command-bar">
+        <div class="brand-lockup">
+          <span class="brand-sigil">AC</span>
+          <div>
+            <strong>AutomataCore</strong>
+            <span>lead operations command center</span>
+          </div>
+        </div>
+        <div class="command-search" role="search">
+          <span>Search</span>
+          <input id="globalSearch" type="search" placeholder="Lead, source, owner, automation">
+        </div>
+        <div class="command-actions">
+          <button class="quiet-button" id="exportRunbook" type="button">Export runbook</button>
+          <button class="hot-button" id="simulateWebhook" type="button">Simulate webhook</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="mission-panel" aria-label="Project overview">
+          <div>
+            <p class="kicker">Sample automation portfolio project</p>
+            <h1>Route inbound leads from webhook to CRM follow-up without manual triage.</h1>
+            <p class="mission-copy">
+              A dark-mode operations console for teams that need webhook intake, lead scoring,
+              owner routing, response drafting, and execution monitoring in one workflow.
+            </p>
+          </div>
+          <dl class="mission-stats" aria-label="Workflow metrics">
+            <div>
+              <dt>Automated steps</dt>
+              <dd id="metricSteps">6</dd>
+            </div>
+            <div>
+              <dt>Leads routed</dt>
+              <dd id="metricLeads">18</dd>
+            </div>
+            <div>
+              <dt>Time saved</dt>
+              <dd id="metricSaved">14.5h</dd>
+            </div>
+            <div>
+              <dt>Follow-up SLA</dt>
+              <dd id="metricSla">92%</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="console-grid">
+          <article class="surface flow-surface" aria-label="Automation flow">
+            <div class="surface-heading">
+              <div>
+                <p class="kicker">Workflow map</p>
+                <h2>Webhook to handoff pipeline</h2>
+              </div>
+              <span class="live-pill">Live</span>
+            </div>
+            <div class="flow-canvas" id="flowCanvas" aria-live="polite">
+              <svg class="flow-lines" viewBox="0 0 900 420" aria-hidden="true">
+                <path d="M130 88 C220 88, 235 156, 325 156" />
+                <path d="M430 156 C515 156, 525 88, 615 88" />
+                <path d="M430 156 C515 156, 525 224, 615 224" />
+                <path d="M720 88 C770 88, 790 156, 840 156" />
+                <path d="M720 224 C770 224, 790 156, 840 156" />
+                <path d="M130 316 C270 316, 565 316, 840 316" />
+              </svg>
+              <button class="flow-node source active" data-node="capture" type="button">
+                <span>01</span>
+                <strong>Capture</strong>
+                <em>Forms, ads, email</em>
+              </button>
+              <button class="flow-node classify" data-node="classify" type="button">
+                <span>02</span>
+                <strong>Score lead</strong>
+                <em>Fit, urgency, budget</em>
+              </button>
+              <button class="flow-node route" data-node="route" type="button">
+                <span>03</span>
+                <strong>Route owner</strong>
+                <em>Sales or support</em>
+              </button>
+              <button class="flow-node draft" data-node="draft" type="button">
+                <span>04</span>
+                <strong>Draft reply</strong>
+                <em>Context-aware email</em>
+              </button>
+              <button class="flow-node crm" data-node="crm" type="button">
+                <span>05</span>
+                <strong>CRM sync</strong>
+                <em>Status and notes</em>
+              </button>
+              <button class="flow-node monitor" data-node="monitor" type="button">
+                <span>06</span>
+                <strong>Monitor</strong>
+                <em>Runs, errors, SLA</em>
+              </button>
+            </div>
+          </article>
+
+          <aside class="surface inspector-surface" aria-label="Selected automation detail">
+            <div class="surface-heading">
+              <div>
+                <p class="kicker">Inspector</p>
+                <h2 id="nodeTitle">Capture</h2>
+              </div>
+              <span class="health-pill" id="nodeHealth">Healthy</span>
+            </div>
+            <p class="node-summary" id="nodeSummary"></p>
+            <div class="checks" id="nodeChecks"></div>
+          </aside>
+        </section>
+
+        <section class="operations-grid">
+          <article class="surface queue-surface">
+            <div class="surface-heading">
+              <div>
+                <p class="kicker">Lead queue</p>
+                <h2>Routing decisions</h2>
+              </div>
+              <select id="queueFilter" aria-label="Filter lead queue">
+                <option value="all">All leads</option>
+                <option value="high">High urgency</option>
+                <option value="unassigned">Needs owner</option>
+                <option value="crm">CRM sync</option>
+              </select>
+            </div>
+            <div class="lead-table" role="table" aria-label="Lead routing queue">
+              <div class="table-row table-head" role="row">
+                <span>Lead</span>
+                <span>Intent</span>
+                <span>Owner</span>
+                <span>SLA</span>
+                <span>Confidence</span>
+              </div>
+              <div id="leadRows"></div>
+            </div>
+          </article>
+
+          <article class="surface run-surface">
+            <div class="surface-heading">
+              <div>
+                <p class="kicker">Execution log</p>
+                <h2>Latest automation runs</h2>
+              </div>
+              <span class="event-count" id="eventCount">0 events</span>
+            </div>
+            <ol class="event-stream" id="eventStream"></ol>
+          </article>
+
+          <article class="surface roi-surface">
+            <div class="surface-heading">
+              <div>
+                <p class="kicker">Business impact</p>
+                <h2>Automation value</h2>
+              </div>
+            </div>
+            <div class="impact-stack">
+              <div>
+                <span>Manual steps removed</span>
+                <strong id="manualSteps">84</strong>
+              </div>
+              <div>
+                <span>Monthly hours saved</span>
+                <strong id="hoursSaved">58h</strong>
+              </div>
+              <div>
+                <span>Missed follow-ups prevented</span>
+                <strong id="missedPrevented">23</strong>
+              </div>
+            </div>
+            <div class="savings-card">
+              <span>Estimated monthly ops value</span>
+              <strong id="monthlyValue">$4,850</strong>
+              <p>Based on routing time, manual copy/paste removal, and faster lead response.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
