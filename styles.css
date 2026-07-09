@@ -25,12 +25,10 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(90deg, rgba(23, 33, 28, 0.035) 1px, transparent 1px),
-    linear-gradient(rgba(23, 33, 28, 0.035) 1px, transparent 1px),
     radial-gradient(circle at 12% 0%, rgba(0, 125, 138, 0.13), transparent 24rem),
     radial-gradient(circle at 88% 4%, rgba(194, 145, 38, 0.18), transparent 25rem),
-    var(--bg);
-  background-size: 48px 48px, 48px 48px, auto, auto, auto;
+    linear-gradient(180deg, #f8f4ec 0%, var(--bg) 46%, #eee6d8 100%);
+  background-size: auto;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.45;
 }
@@ -197,14 +195,15 @@ button {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(320px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "mission console"
-    "mission ops"
-    "proof proof";
-  gap: 20px;
+    "mission"
+    "console"
+    "ops"
+    "proof";
+  gap: 22px;
   align-items: start;
-  width: min(1420px, calc(100% - 44px));
+  width: min(1360px, calc(100% - 48px));
   margin: 0 auto;
   padding: 24px 0 38px;
 }
@@ -220,14 +219,18 @@ button {
 .mission-panel {
   grid-area: mission;
   display: grid;
-  gap: 18px;
-  align-items: start;
-  padding: 24px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(430px, 0.85fr);
+  gap: 26px;
+  align-items: stretch;
+  padding: 26px;
   background:
     linear-gradient(180deg, rgba(255, 253, 248, 0.94), rgba(246, 239, 226, 0.96)),
     var(--paper);
-  position: sticky;
-  top: 84px;
+}
+
+.mission-story {
+  align-self: center;
+  max-width: 760px;
 }
 
 .kicker {
@@ -248,9 +251,9 @@ dd {
 }
 
 h1 {
-  max-width: 620px;
+  max-width: 760px;
   margin-bottom: 12px;
-  font-size: 36px;
+  font-size: 40px;
   line-height: 1.04;
   letter-spacing: 0;
 }
@@ -263,7 +266,7 @@ h2 {
 }
 
 .mission-copy {
-  max-width: 540px;
+  max-width: 680px;
   margin-bottom: 0;
   color: var(--muted);
   font-size: 16px;
@@ -288,7 +291,13 @@ h2 {
 
 .case-brief {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  align-content: start;
+}
+
+.case-brief .mission-stats {
+  grid-column: 1 / -1;
 }
 
 .brief-row {
@@ -414,10 +423,9 @@ h2 {
   position: relative;
   min-height: 392px;
   background:
-    linear-gradient(90deg, rgba(23, 33, 28, 0.045) 1px, transparent 1px),
-    linear-gradient(rgba(23, 33, 28, 0.045) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(238, 246, 241, 0.86));
-  background-size: 42px 42px, 42px 42px, auto;
+    radial-gradient(circle at 16% 30%, rgba(0, 125, 138, 0.08), transparent 18rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(240, 246, 242, 0.94));
+  background-size: auto;
 }
 
 .flow-lines {
@@ -440,7 +448,7 @@ h2 {
   position: absolute;
   display: grid;
   gap: 4px;
-  width: 152px;
+  width: 148px;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 13px;
@@ -473,33 +481,33 @@ h2 {
 }
 
 .source {
-  left: 5%;
-  top: 164px;
+  left: 4.5%;
+  top: 150px;
 }
 
 .classify {
-  left: 24%;
-  top: 164px;
+  left: 23%;
+  top: 150px;
 }
 
 .route {
-  left: 46%;
-  top: 62px;
+  left: 43%;
+  top: 64px;
 }
 
 .draft {
-  left: 46%;
-  top: 266px;
+  left: 43%;
+  top: 246px;
 }
 
 .crm {
-  left: 68%;
-  top: 164px;
+  left: 64.5%;
+  top: 150px;
 }
 
 .monitor {
-  left: calc(100% - 184px);
-  top: 164px;
+  right: 4.5%;
+  top: 150px;
 }
 
 .inspector-surface {
@@ -564,9 +572,13 @@ h2 {
 .operations-grid {
   grid-area: ops;
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.54fr) minmax(280px, 0.48fr);
+  grid-template-columns: minmax(420px, 1.14fr) minmax(300px, 0.72fr) minmax(270px, 0.62fr);
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
+}
+
+.operations-grid > .surface {
+  height: 100%;
 }
 
 select {
@@ -685,9 +697,12 @@ select {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 18px;
+  align-items: stretch;
 }
 
 .proof-card {
+  display: grid;
+  align-content: start;
   padding: 18px;
 }
 
@@ -705,7 +720,7 @@ select {
 
 .proof-list li {
   display: grid;
-  grid-template-columns: 34px 1fr;
+  grid-template-columns: 34px minmax(0, 1fr);
   gap: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -715,6 +730,7 @@ select {
 
 .proof-list span {
   display: grid;
+  grid-row: 1 / span 2;
   width: 28px;
   height: 28px;
   place-items: center;
@@ -727,6 +743,7 @@ select {
 .proof-list strong,
 .proof-list em {
   display: block;
+  grid-column: 2;
 }
 
 .proof-list em {
@@ -740,6 +757,16 @@ select {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+}
+
+@media (max-width: 1280px) {
+  .operations-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
+  }
+
+  .roi-surface {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 1120px) {
@@ -760,7 +787,7 @@ select {
   }
 
   .mission-panel {
-    position: static;
+    grid-template-columns: 1fr;
   }
 
   .command-actions {
@@ -820,6 +847,7 @@ select {
     padding: 18px;
   }
 
+  .case-brief,
   .mission-stats,
   .delivery-grid {
     grid-template-columns: 1fr;
