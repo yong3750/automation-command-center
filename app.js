@@ -159,7 +159,7 @@ function setNode(nodeKey) {
     .map(
       ([title, body]) => `
         <div class="check-item">
-          <span class="check-icon">OK</span>
+          <span class="check-icon" aria-hidden="true"></span>
           <div>
             <strong>${title}</strong>
             <span>${body}</span>
