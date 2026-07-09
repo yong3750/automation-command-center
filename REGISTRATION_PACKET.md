@@ -2,7 +2,7 @@
 
 ## Upwork Title
 
-Automation Command Center for Lead Operations
+Webhook-to-CRM Lead Routing Automation Dashboard
 
 ## Role
 
@@ -10,7 +10,9 @@ Workflow Automation Developer
 
 ## Description To Paste
 
-Sample project: I built a dark-mode automation command center that shows how inbound leads can move from webhook capture to lead scoring, owner routing, CRM sync, reply drafting, and execution monitoring. The demo includes a clickable workflow map, lead routing queue, SLA and confidence indicators, live run logs, business impact metrics, simulated webhook intake, and JSON runbook export. It is designed for Zapier, Make, n8n, webhook, CRM automation, and internal sales operations projects.
+Sample project: I built a workflow automation dashboard that shows how scattered inbound leads can move from webhook capture to lead scoring, owner routing, reply drafting, CRM field sync, and execution monitoring. The demo is framed as a practical lead-operations case study, with a clickable workflow map, node inspector, SLA and confidence indicators, live run logs, business impact metrics, simulated webhook intake, and JSON runbook export.
+
+This is designed for clients who need custom Zapier, Make, n8n, webhook, CRM automation, or internal SalesOps tools when no-code automations become hard to monitor or maintain.
 
 ## Skills
 
@@ -49,7 +51,7 @@ TBD after repository creation
 
 ### Cover
 
-Automation command center showing webhook intake, lead scoring, routing, CRM sync, execution logs, and business impact metrics.
+Case-study automation dashboard showing the client problem, webhook intake, lead scoring, owner routing, CRM sync, run logs, and business impact metrics.
 
 ### Inspector
 
@@ -67,3 +69,4 @@ Responsive mobile view for reviewing workflow status, routing decisions, and aut
 
 - Mark this clearly as a sample project.
 - Use it for workflow automation, CRM automation, lead routing, Zapier, Make, n8n, webhook, and API integration jobs.
+- Emphasize business value: less manual triage, faster routing, cleaner CRM records, and visible automation runs.

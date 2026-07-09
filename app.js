@@ -272,9 +272,10 @@ function simulateRun() {
   routedCount += 1;
   runCount += 1;
   document.querySelector("#metricLeads").textContent = String(routedCount);
-  document.querySelector("#metricSaved").textContent = "15.2h";
   document.querySelector("#manualSteps").textContent = "89";
   document.querySelector("#hoursSaved").textContent = "61h";
+  document.querySelector("#handoffTime").textContent = "74s";
+  document.querySelector("#fallbackRate").textContent = "7%";
   events.unshift([
     "Now",
     "New webhook lead routed",

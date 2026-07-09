@@ -2,7 +2,7 @@
 
 ## Title
 
-Automation Command Center for Lead Operations
+Webhook-to-CRM Lead Routing Automation Dashboard
 
 ## Role
 
@@ -10,11 +10,13 @@ Workflow Automation Developer
 
 ## Short Positioning
 
-Webhook-to-CRM automation command center for lead routing, scoring, run monitoring, and sales operations handoff.
+Case-study automation dashboard for routing inbound leads from webhook capture to CRM follow-up without manual triage.
 
 ## Description
 
-Sample project: I built a dark-mode automation command center that shows how inbound leads can move from webhook capture to lead scoring, owner routing, CRM sync, reply drafting, and execution monitoring. The demo includes a clickable workflow map, lead routing queue, SLA and confidence indicators, live run logs, business impact metrics, simulated webhook intake, and JSON runbook export. It is designed for Zapier, Make, n8n, webhook, CRM automation, and internal sales operations projects.
+Sample project: I built a workflow automation dashboard that shows how scattered inbound leads can move from webhook capture to lead scoring, owner routing, reply drafting, CRM field sync, and execution monitoring. The demo includes a clickable workflow map, node inspector, lead routing queue, SLA and confidence indicators, live run logs, business impact metrics, simulated webhook intake, and JSON runbook export.
+
+The project is designed for clients who need custom Zapier, Make, n8n, webhook, CRM automation, or internal SalesOps tools when simple no-code automations become hard to monitor or maintain.
 
 ## Best Proposal Use Cases
 
